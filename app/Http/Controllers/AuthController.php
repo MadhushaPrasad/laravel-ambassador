@@ -39,6 +39,7 @@ class AuthController extends Controller
         
         return response([
             "message" => 'success',
+            "status" => Response.HTTP_OK,
         ])->withCookie($cookie);
     }
 }
