@@ -42,4 +42,8 @@ class AuthController extends Controller
             "status" => Response::HTTP_OK
         ])->withCookie($cookie);
     }
+
+    public function user(Request $request){
+        return $request->user();
+    }
 }
