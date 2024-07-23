@@ -17,6 +17,22 @@ class AuthController extends Controller
                 "is_admin" => 1,
             ]
         );
-        return response($user,Response::HTTP_CREATED);
+        return response($user, Response::HTTP_CREATED);
+    }
+
+    public function login(Request $request)
+    {
+        if (!\Auth::attempt($request->only("email", "password"))) {
+            return response(
+                [
+                    "error" => "Invalid credentials",
+                ],
+                Response::HTTP_UNAUTHORIZED
+            );
+        }
+
+        $user = \Auth::user();
+        
+        return response($user, Response::HTTP_OK);
     }
 }
